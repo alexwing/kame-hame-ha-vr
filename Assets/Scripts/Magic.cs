@@ -1,8 +1,9 @@
 ﻿
 /**
- * 마법을 만들고 쏘는 스크립트
+ * Script to create and shoot magic
  */
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,15 @@ public class Magic : MonoBehaviour
     [SerializeField] private Transform _rightHand;
     private Rigidbody _leftHandRd;
     private Rigidbody _rightHandRd;
+    [Tooltip("Vertical position of Kame Hame Ha.")]
+    [Range(0f, 1f)]
+    public float _kameHameHaPosition = 0.5f;    
+    [Tooltip("Hands shoot intensity of Kame Hame Ha.")]
+    [Range(0f, 50f)]
+    public float _kameHameHaShootMagnitude = 4f;
+    [Tooltip("Velocity of Kame Hame Ha.")]
+    [Range(0, 250)]
+    public int _kameHameHaShootVelocity = 50;
     private float distance;
 
     [Header("Effect")]
@@ -23,16 +33,17 @@ public class Magic : MonoBehaviour
     private Transform _currentEffect;
     private Rigidbody _magicRd;
     private int index;
-    private bool _activeMagic;
+   // private bool _activeMagic;
     private List<ParticleSystem> _magicParticleList;
 
-    [Header("Player")]
+    [Header("Score")]
     [SerializeField] private TMPro.TextMeshPro _aimPercentText;
     [SerializeField] private TMPro.TextMeshPro _hitsText;
+    [SerializeField] private TMPro.TextMeshPro _DistanceText;
     private float _shotCount;
     public static float _hitCount;
 
-    public float _ballPosition = 0.5f;
+
     void Start()
     {
         instance = this;
@@ -48,29 +59,39 @@ public class Magic : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 양 손바닥 사이의 거리를 측정
+
+
+   //     var speed = Vector3.Dot(_leftHandRd.velocity, _leftHandRd.transform.up * -1);
+  //      _hitsText.text = "speed: " + speed;
+        // Measure the distance between both palms
         distance = Vector3.Distance(_leftHand.position, _rightHand.position);
+        _DistanceText.text = "Distance: " + String.Format("{0:0.00}", distance);
 
+        // Debug.Log(distance);
+        // The distance is less than 0.1 and no magic is generated.
+        if (distance < 0.1f && _currentEffect == null)
+        {
+            CreateEffect();
+        }
 
-       // Debug.Log(distance);
-        // 거리가 0.1 보다 작고 마법이 생성되지 않은 상태
-        if (distance < 0.1f && !_activeMagic) CreateEffect();
+        // If the magic has not been created, or there is no currently created effect
+        if (_currentEffect == null)
+        {
+            return;
+        }
 
-        // 마법이 생성되지 않았거나, 현재 생성된 이팩트가 없는경우
-        if (!_activeMagic || _currentEffect == null) return;
-
-        // 마법 발사
+        // Magic firing
         ShotMagic();
     }
 
 
     private void CreateEffect()
     {
-        // 초기화
-        _activeMagic = true;
+        // reset
+        //_activeMagic = true;
 
-        // 랜덤으로 이펙트 결정 후 생성
-        index = Random.Range(0, _magicArray.Length);
+        // Generated after determining the effect at random
+        index = UnityEngine.Random.Range(0, _magicArray.Length);
         _currentEffect = Instantiate(_magicArray[index]);
         _currentEffect.GetComponent<DestoryEffect>().SetMagic(instance);
 
@@ -78,51 +99,65 @@ public class Magic : MonoBehaviour
 
         _magicParticleList.Clear();
 
-        // 여러 파티클로 이루어 진것을 리스트로 담음
+        // Included in a list consisting of several particles
         for (int i = 0; i < _currentEffect.childCount; i++)
             _magicParticleList.Add(_currentEffect.GetChild(i).GetComponent<ParticleSystem>());
     }
 
     private void ShotMagic()
     {
-        // 손 바닥의 거리가 0.5보다 커지면 그냥 앞으로 발사
-        if (distance > 0.5f)
+        // If the distance of the bottom of the hand is greater than 0.5, it just fires forward
+       /* if (distance > 0.5f)
         {
             _activeMagic = false;
             _magicRd.AddForce(Vector3.forward * 2, ForceMode.Impulse);
             _shotCount++;
             return;
-        }
+        }*/
 
-        // 이펙트 위치를 양손의 중앙으로 설정
-        _currentEffect.position = (_leftHand.position + _rightHand.position) * _ballPosition;
+        // Set the effect position to the center of both hands
+        _currentEffect.position = (_leftHand.position + _rightHand.position) * _kameHameHaPosition;
 
-        // 리스트에 담긴 여러 파티클을 꺼내서 스케일 조정
+        // Pull out multiple particles from the list and scale them
         for (int i = 0; i < _magicParticleList.Count; i++)
             _magicParticleList[i].transform.localScale = new Vector3(distance, distance, distance) * 0.1f;
 
-        // 양손의 힘이 2보다 크고 거리가 0.2보다 크면 마법 발사
-        if (_leftHandRd.velocity.magnitude > 4f && _rightHandRd.velocity.magnitude > 4f && distance > 1f)
+        // When the strength of both hands is greater than 2 and the distance is greater than 0.2, magic is fired.
+
+
+        var midway = _leftHandRd.transform.up + _rightHandRd.transform.up;
+        var speed = Vector3.Dot(midway, _leftHandRd.transform.up );
+        _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
+        // if (_leftHandRd.velocity.magnitude > _kameHameHaShootMagnitude && _rightHandRd.velocity.magnitude > _kameHameHaShootMagnitude && distance > 0.5f)
+
+        if (speed > _kameHameHaShootMagnitude)
+        //if (_leftHandRd.velocity.magnitude > _kameHameHaShootMagnitude && _rightHandRd.velocity.magnitude > _kameHameHaShootMagnitude)
         {
-            _activeMagic = false;
-            var direction = _leftHandRd.velocity.normalized;
-           
-            // 방향 조정
-            direction = new Vector3(Mathf.Clamp(direction.x,-0.4f,0.4f), Mathf.Clamp(direction.y, -0.05f, 0.05f), Mathf.Clamp(direction.z,0.1f,10));
-          
-            _magicRd.AddForce(direction * 5, ForceMode.Impulse);
+          //  _activeMagic = false;
+          //  var direction = _leftHandRd.velocity.normalized;
+            
+         //   Vector3 direction = transform.InverseTransformDirection(_leftHandRd.velocity);
+
+            // Direction adjustment
+            //    direction = new Vector3(Mathf.Clamp(direction.x,-0.5f,0.5f), Mathf.Clamp(direction.y, -0.0f, 0.0f), Mathf.Clamp(direction.z,0.1f,10));
+            
+            
+
+            _magicRd.AddForce(midway * speed *_kameHameHaShootVelocity );
+            _magicRd = null;
+            _currentEffect = null;
             _shotCount++;
         }
     }
 
     /// <summary>
-    /// 명중률 업데이트
+    /// Accuracy update
     /// </summary>
     public void UpdatePercent()
     {
         var percent = _hitCount / _shotCount * 100;
 
         _aimPercentText.text = "Accuracy: " + percent.ToString("F1") + "%";
-        _hitsText.text = "Hits: " + _hitCount ;
+     //   _hitsText.text = "Hits: " + _hitCount ;
     }
 }
