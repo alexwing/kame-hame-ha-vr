@@ -17,14 +17,17 @@ public class Magic : MonoBehaviour
     [SerializeField] private Transform _rightHand;
     private Rigidbody _leftHandRd;
     private Rigidbody _rightHandRd;
+    [Tooltip("Hand distance to init Kame Hame Ha.")]
+    [Range(0f, 5f)]
+    public float _handDistance = 0.1f;
     [Tooltip("Vertical position of Kame Hame Ha.")]
-    [Range(0f, 1f)]
-    public float _kameHameHaPosition = 0.5f;    
+    [Range(0f, 3f)]
+    public float _kameHameHaPosition = 0.5f;
     [Tooltip("Hands shoot intensity of Kame Hame Ha.")]
     [Range(0f, 50f)]
     public float _kameHameHaShootMagnitude = 4f;
     [Tooltip("Velocity of Kame Hame Ha.")]
-    [Range(0, 250)]
+    [Range(0, 1500)]
     public int _kameHameHaShootVelocity = 50;
     private float distance;
 
@@ -69,7 +72,7 @@ public class Magic : MonoBehaviour
 
         // Debug.Log(distance);
         // The distance is less than 0.1 and no magic is generated.
-        if (distance < 0.1f && _currentEffect == null)
+        if (distance < _handDistance && _currentEffect == null)
         {
             CreateEffect();
         }
@@ -107,16 +110,20 @@ public class Magic : MonoBehaviour
     private void ShotMagic()
     {
         // If the distance of the bottom of the hand is greater than 0.5, it just fires forward
-       /* if (distance > 0.5f)
-        {
-            _activeMagic = false;
-            _magicRd.AddForce(Vector3.forward * 2, ForceMode.Impulse);
-            _shotCount++;
-            return;
-        }*/
+        /* if (distance > 0.5f)
+         {
+             _activeMagic = false;
+             _magicRd.AddForce(Vector3.forward * 2, ForceMode.Impulse);
+             _shotCount++;
+             return;
+         }*/
 
         // Set the effect position to the center of both hands
-        _currentEffect.position = (_leftHand.position + _rightHand.position) * _kameHameHaPosition;
+        _currentEffect.parent = transform;
+
+        Vector3 middlePosition = _leftHand.position - (( _leftHand.position - _rightHand.position)/2);
+
+        _currentEffect.position = new Vector3(middlePosition.x, middlePosition.y * _kameHameHaPosition, middlePosition.z) ;
 
         // Pull out multiple particles from the list and scale them
         for (int i = 0; i < _magicParticleList.Count; i++)
