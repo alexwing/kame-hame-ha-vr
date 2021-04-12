@@ -593,6 +593,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fec56bb984a005498e832b877a69aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &838828267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838828265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de40523c9b57c6d4d865d57c9ef0e214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Terrain: {fileID: 838828268}
+  terrainData: {fileID: 15600000, guid: c9c05f1e1ea336e49ba146a104e2d88c, type: 2}
+--- !u!218 &838828268 stripped
+Terrain:
+  m_CorrespondingSourceObject: {fileID: 218851552330760692, guid: 6904f37e0f927a64e88a66be020e8796,
+    type: 3}
+  m_PrefabInstance: {fileID: 1231644755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &913121350
 GameObject:
   m_ObjectHideFlags: 0
