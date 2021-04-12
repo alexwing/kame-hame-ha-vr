@@ -20,6 +20,12 @@ public class Magic : MonoBehaviour
     [Tooltip("Hand distance to init Kame Hame Ha.")]
     [Range(0f, 5f)]
     public float _handDistance = 0.1f;
+
+    [Header("Kame Hame Ha")]
+    [Tooltip("Max size of Kame Hame Ha.")]
+    [Range(0f, 8f)]
+    public float _kameHameMaxSize = 2f;
+
     [Tooltip("Vertical position of Kame Hame Ha.")]
     [Range(0f, 3f)]
     public float _kameHameHaPosition = 0.5f;
@@ -69,6 +75,11 @@ public class Magic : MonoBehaviour
         // Measure the distance between both palms
         distance = Vector3.Distance(_leftHand.position, _rightHand.position);
         _DistanceText.text = "Distance: " + String.Format("{0:0.00}", distance);
+
+        if (distance> _kameHameMaxSize)
+        {
+            distance = _kameHameMaxSize;
+        }
 
         // Debug.Log(distance);
         // The distance is less than 0.1 and no magic is generated.
