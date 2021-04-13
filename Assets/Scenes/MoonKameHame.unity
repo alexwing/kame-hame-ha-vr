@@ -1475,6 +1475,11 @@ MonoBehaviour:
   _meshRenderer: {fileID: 1583132409}
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
+  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
+    type: 3}
+  explosionLife: 5
+  detailLevel: 1
+  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &1583132413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2273,6 +2278,11 @@ MonoBehaviour:
   _meshRenderer: {fileID: 1561303777}
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
+  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
+    type: 3}
+  explosionLife: 10
+  detailLevel: 1
+  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &1904312295
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2561,6 +2571,11 @@ MonoBehaviour:
   _meshRenderer: {fileID: 2091104044}
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
+  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
+    type: 3}
+  explosionLife: 10
+  detailLevel: 1
+  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &2091104048
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2588,6 +2603,7 @@ GameObject:
   - component: {fileID: 4050235648832943}
   - component: {fileID: 114121827852025121}
   - component: {fileID: 1193063154145314}
+  - component: {fileID: 1193063154145315}
   m_Layer: 0
   m_Name: Leap Rig
   m_TagString: Untagged
@@ -2609,6 +2625,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainSpeed: 2
   rotationSpeed: 20
+--- !u!143 &1193063154145315
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193063154145313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1339460483680145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,6 +2911,11 @@ MonoBehaviour:
   _meshRenderer: {fileID: 3373062388540405068}
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
+  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
+    type: 3}
+  explosionLife: 10
+  detailLevel: 1
+  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &698890703259502638
 Rigidbody:
   m_ObjectHideFlags: 0
