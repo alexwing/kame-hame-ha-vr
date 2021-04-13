@@ -17,7 +17,7 @@ public class terrainReset : MonoBehaviour {
 	private void Start()
 	{
 		this.originalHeights = terrainData.GetHeights(
-			0, 0, Terrain.terrainData.heightmapWidth, Terrain.terrainData.heightmapHeight);
+			0, 0, Terrain.terrainData.heightmapResolution, Terrain.terrainData.heightmapResolution);
 
         this.Terrain.terrainData.SetHeights(0, 0, this.originalHeights);
     }

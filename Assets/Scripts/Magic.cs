@@ -27,13 +27,13 @@ public class Magic : MonoBehaviour
     public float _kameHameMaxSize = 2f;
 
     [Tooltip("Vertical position of Kame Hame Ha.")]
-    [Range(0f, 3f)]
+    [Range(-3f, 3f)]
     public float _kameHameHaPosition = 0.5f;
     [Tooltip("Hands shoot intensity of Kame Hame Ha.")]
     [Range(0f, 50f)]
     public float _kameHameHaShootMagnitude = 4f;
     [Tooltip("Velocity of Kame Hame Ha.")]
-    [Range(0, 1500)]
+    [Range(0, 3000)]
     public int _kameHameHaShootVelocity = 50;
     private float distance;
 
@@ -107,6 +107,7 @@ public class Magic : MonoBehaviour
         // Generated after determining the effect at random
         index = UnityEngine.Random.Range(0, _magicArray.Length);
         _currentEffect = Instantiate(_magicArray[index]);
+        _currentEffect.name = "kamehameha";
         _currentEffect.GetComponent<DestoryEffect>().SetMagic(instance);
 
         _magicRd = _currentEffect.GetComponent<Rigidbody>();
@@ -134,7 +135,7 @@ public class Magic : MonoBehaviour
 
         Vector3 middlePosition = _leftHand.position - (( _leftHand.position - _rightHand.position)/2);
 
-        _currentEffect.position = new Vector3(middlePosition.x, middlePosition.y * _kameHameHaPosition, middlePosition.z) ;
+        _currentEffect.position = new Vector3(middlePosition.x, middlePosition.y + _kameHameHaPosition, middlePosition.z) ;
 
         // Pull out multiple particles from the list and scale them
         for (int i = 0; i < _magicParticleList.Count; i++)

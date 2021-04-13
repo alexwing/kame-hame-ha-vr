@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.004
+  m_FogDensity: 0.0025
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -581,18 +581,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1231644755}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &838828266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838828265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fec56bb984a005498e832b877a69aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &838828267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +601,28 @@ Terrain:
     type: 3}
   m_PrefabInstance: {fileID: 1231644755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &838828269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838828265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d44ae1fef2627446bdeda9d05f75085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tData: {fileID: 15600000, guid: 5a2585971f88ee14ea0dc432488a27d9, type: 2}
+  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
+    type: 3}
+  explosionLife: 6
+  detailLevel: 1
+  terrainDestructSize: 1
+  terrainDestructHeight: 1
+  brush: {fileID: 2800000, guid: c659d7326f84510419eefa921234e9d7, type: 3}
+  type: 0
+  clip: {fileID: 8300000, guid: 4bb527c4eb5b08c44b8d24a14a6ab3ce, type: 3}
 --- !u!1 &913121350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2661,9 +2671,9 @@ MonoBehaviour:
   _rightHand: {fileID: 1898005165}
   _handDistance: 0.5
   _kameHameMaxSize: 4.25
-  _kameHameHaPosition: 1.1
+  _kameHameHaPosition: 0.5
   _kameHameHaShootMagnitude: 1
-  _kameHameHaShootVelocity: 565
+  _kameHameHaShootVelocity: 1500
   _magicArray:
   - {fileID: 400004, guid: aeae58bf37a687647adec1a709ea4bd4, type: 3}
   - {fileID: 322934440827122803, guid: 7f4cd52014748b049b82f29f755c1278, type: 3}
