@@ -15,6 +15,9 @@ public class Magic : MonoBehaviour
     [Header("Hand")]
     [SerializeField] private Transform _leftHand;
     [SerializeField] private Transform _rightHand;
+    private Vector3 _leftHandLastValid;
+    private Vector3 _rightHandLastValid;
+
     private Rigidbody _leftHandRd;
     private Rigidbody _rightHandRd;
     [Tooltip("Hand distance to init Kame Hame Ha.")]
@@ -133,6 +136,28 @@ public class Magic : MonoBehaviour
         // Set the effect position to the center of both hands
         _currentEffect.parent = transform;
 
+    //    Debug.Log("hads active" + _leftHandRd.gameObject.activeSelf + "+"+ _rightHand.gameObject.activeSelf);
+        Debug.Log("hads position" + _leftHand.position + "+"+ _rightHand.position);
+
+        if (!_leftHandRd.gameObject.activeInHierarchy)
+        {
+            _leftHand.position = _leftHandLastValid;
+        }
+        else
+        {
+            _leftHandLastValid = _leftHand.position;
+        }
+
+        if (!_rightHandRd.gameObject.activeInHierarchy)
+        {
+            _rightHand.position = _rightHandLastValid;
+        }
+        else
+        {
+            _rightHandLastValid = _rightHand.position;
+        }
+
+
         Vector3 middlePosition = _leftHand.position - (( _leftHand.position - _rightHand.position)/2);
 
         _currentEffect.position = new Vector3(middlePosition.x, middlePosition.y + _kameHameHaPosition, middlePosition.z) ;
@@ -142,26 +167,12 @@ public class Magic : MonoBehaviour
             _magicParticleList[i].transform.localScale = new Vector3(distance, distance, distance) * 0.1f;
 
         // When the strength of both hands is greater than 2 and the distance is greater than 0.2, magic is fired.
-
-
         var midway = _leftHandRd.transform.up + _rightHandRd.transform.up;
         var speed = Vector3.Dot(midway, _leftHandRd.transform.up );
         _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
-        // if (_leftHandRd.velocity.magnitude > _kameHameHaShootMagnitude && _rightHandRd.velocity.magnitude > _kameHameHaShootMagnitude && distance > 0.5f)
-
+    
         if (speed > _kameHameHaShootMagnitude)
-        //if (_leftHandRd.velocity.magnitude > _kameHameHaShootMagnitude && _rightHandRd.velocity.magnitude > _kameHameHaShootMagnitude)
         {
-          //  _activeMagic = false;
-          //  var direction = _leftHandRd.velocity.normalized;
-            
-         //   Vector3 direction = transform.InverseTransformDirection(_leftHandRd.velocity);
-
-            // Direction adjustment
-            //    direction = new Vector3(Mathf.Clamp(direction.x,-0.5f,0.5f), Mathf.Clamp(direction.y, -0.0f, 0.0f), Mathf.Clamp(direction.z,0.1f,10));
-            
-            
-
             _magicRd.AddForce(midway * speed *_kameHameHaShootVelocity );
             _magicRd = null;
             _currentEffect = null;
