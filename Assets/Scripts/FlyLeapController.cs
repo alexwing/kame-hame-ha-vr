@@ -4,14 +4,15 @@ using UnityEngine;
 public class FlyLeapController : MonoBehaviour
 {
     /*
-    Writen by Windexglow 11-13-10.  Use it, edit it, steal it I don't care.  
-    Converted to C# 27-02-13 - no credit wanted.
-    Simple flycam I made, since I couldn't find any others made public. 
-    Made simple to use (drag and drop, done) for regular keyboard layout  
     WASD : basic movement
     SHIFT : Makes camera accelerate
     SPACE : Moves camera on X and Z axis only.  So camera doesn't gain any height
 	*/
+
+
+    [Header("Hand")]
+    [SerializeField] private Transform _leftHand;
+    [SerializeField] private Transform _rightHand;
 
     public float mainSpeed = 2f;			// Regular speed.
 	public float rotationSpeed = 20f;		// Rotation speed.

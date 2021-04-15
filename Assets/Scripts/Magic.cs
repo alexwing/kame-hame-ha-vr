@@ -12,6 +12,9 @@ public class Magic : MonoBehaviour
 {
     public static Magic instance;
 
+
+    [SerializeField] private Transform _kames;
+
     [Header("Hand")]
     [SerializeField] private Transform _leftHand;
     [SerializeField] private Transform _rightHand;
@@ -45,7 +48,7 @@ public class Magic : MonoBehaviour
     private Transform _currentEffect;
     private Rigidbody _magicRd;
     private int index;
-   // private bool _activeMagic;
+    // private bool _activeMagic;
     private List<ParticleSystem> _magicParticleList;
 
     [Header("Score")]
@@ -73,13 +76,13 @@ public class Magic : MonoBehaviour
     {
 
 
-   //     var speed = Vector3.Dot(_leftHandRd.velocity, _leftHandRd.transform.up * -1);
-  //      _hitsText.text = "speed: " + speed;
+        //     var speed = Vector3.Dot(_leftHandRd.velocity, _leftHandRd.transform.up * -1);
+        //      _hitsText.text = "speed: " + speed;
         // Measure the distance between both palms
         distance = Vector3.Distance(_leftHand.position, _rightHand.position);
         _DistanceText.text = "Distance: " + String.Format("{0:0.00}", distance);
 
-        if (distance> _kameHameMaxSize)
+        if (distance > _kameHameMaxSize)
         {
             distance = _kameHameMaxSize;
         }
@@ -109,8 +112,9 @@ public class Magic : MonoBehaviour
 
         // Generated after determining the effect at random
         index = UnityEngine.Random.Range(0, _magicArray.Length);
-        _currentEffect = Instantiate(_magicArray[index]);
+        _currentEffect = Instantiate(_magicArray[index], _kames);
         _currentEffect.name = "kamehameha";
+        _currentEffect.transform.parent = _kames;
         _currentEffect.GetComponent<DestoryEffect>().SetMagic(instance);
 
         _magicRd = _currentEffect.GetComponent<Rigidbody>();
@@ -134,10 +138,10 @@ public class Magic : MonoBehaviour
          }*/
 
         // Set the effect position to the center of both hands
-        _currentEffect.parent = transform;
+       // _currentEffect.parent = transform;
 
-    //    Debug.Log("hads active" + _leftHandRd.gameObject.activeSelf + "+"+ _rightHand.gameObject.activeSelf);
-        Debug.Log("hads position" + _leftHand.position + "+"+ _rightHand.position);
+        //    Debug.Log("hads active" + _leftHandRd.gameObject.activeSelf + "+"+ _rightHand.gameObject.activeSelf);
+      //  Debug.Log("hads position" + _leftHand.position + "+" + _rightHand.position);
 
         if (!_leftHandRd.gameObject.activeInHierarchy)
         {
@@ -158,9 +162,9 @@ public class Magic : MonoBehaviour
         }
 
 
-        Vector3 middlePosition = _leftHand.position - (( _leftHand.position - _rightHand.position)/2);
+        Vector3 middlePosition = _leftHand.position - ((_leftHand.position - _rightHand.position) / 2);
 
-        _currentEffect.position = new Vector3(middlePosition.x, middlePosition.y + _kameHameHaPosition, middlePosition.z) ;
+        _currentEffect.localPosition = new Vector3(middlePosition.x, middlePosition.y + _kameHameHaPosition, middlePosition.z);
 
         // Pull out multiple particles from the list and scale them
         for (int i = 0; i < _magicParticleList.Count; i++)
@@ -168,12 +172,12 @@ public class Magic : MonoBehaviour
 
         // When the strength of both hands is greater than 2 and the distance is greater than 0.2, magic is fired.
         var midway = _leftHandRd.transform.up + _rightHandRd.transform.up;
-        var speed = Vector3.Dot(midway, _leftHandRd.transform.up );
+        var speed = Vector3.Dot(midway, _leftHandRd.transform.up);
         _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
-    
+
         if (speed > _kameHameHaShootMagnitude)
         {
-            _magicRd.AddForce(midway * speed *_kameHameHaShootVelocity );
+            _magicRd.AddForce(midway * speed * _kameHameHaShootVelocity);
             _magicRd = null;
             _currentEffect = null;
             _shotCount++;
@@ -187,7 +191,23 @@ public class Magic : MonoBehaviour
     {
         var percent = _hitCount / _shotCount * 100;
 
-        _aimPercentText.text = "Accuracy: " + percent.ToString("F1") + "%";
-     //   _hitsText.text = "Hits: " + _hitCount ;
+      //  _aimPercentText.text = "Accuracy: " + percent.ToString("F1") + "%";
+        //   _hitsText.text = "Hits: " + _hitCount ;
+    }
+
+    public void closed()
+    {
+
+
+        _aimPercentText.text = "Closed";
+        //   _hitsText.text = "Hits: " + _hitCount ;
+    }
+
+    public void opened()
+    {
+
+
+        _aimPercentText.text = "Open";
+        //   _hitsText.text = "Hits: " + _hitCount ;
     }
 }
