@@ -122,6 +122,84 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &55420611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1548753387784648, guid: 0089c591bcb78a54aa4d6c0bfce215bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1655639348}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &55420612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55420611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98e641d160144e87a3d33fcdb893a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1671192349943264}
+        m_MethodName: closed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4968531031404869576}
+        m_MethodName: HandClosed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDeactivate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1671192349943264}
+        m_MethodName: opened
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4968531031404869576}
+        m_MethodName: HandOpened
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Period: 0.75
+  HandModel: {fileID: 528001627}
+  Thumb: 2
+  Index: 2
+  Middle: 2
+  Ring: 2
+  Pinky: 2
+  MinimumExtendedCount: 0
+  MaximumExtendedCount: 0
+  ShowGizmos: 1
 --- !u!1001 &174058684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -532,7 +610,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1655639348}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 55420611}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e0ed5922e911b343b8400997c95409c, type: 3}
@@ -3809,7 +3887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftHand: {fileID: 0}
   _rightHand: {fileID: 0}
-  mainSpeed: 2
+  mainSpeed: 20
   rotationSpeed: 20
 --- !u!136 &4968531031404869577
 CapsuleCollider:

@@ -14,14 +14,29 @@ public class FlyLeapController : MonoBehaviour
     [SerializeField] private Transform _leftHand;
     [SerializeField] private Transform _rightHand;
 
-    public float mainSpeed = 2f;			// Regular speed.
-	public float rotationSpeed = 20f;		// Rotation speed.
-	private float shiftAdd = 25f;			// Multiplied by how long shift is held.  Basically running.
-	private float maxShift = 100f;			// Maximum speed when holdin gshift.
+    public float mainSpeed = 2f;            // Regular speed.
+    public float rotationSpeed = 20f;       // Rotation speed.
+    private float shiftAdd = 25f;           // Multiplied by how long shift is held.  Basically running.
+    private float maxShift = 100f;			// Maximum speed when holdin gshift.
     private float totalRun = 1f;
     private bool lockMovement = false;
+    public static bool HandState = false;
 
     public Controller controller;
+
+
+
+    public void  HandClosed()
+    {
+        HandState = true;
+
+    }
+
+    public void HandOpened()
+    {
+        HandState = false;
+
+    }
 
     private void Update()
     {
@@ -68,7 +83,10 @@ public class FlyLeapController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
 			lockMovement = !lockMovement;
-	}
+
+
+      
+    }
 
     private Vector3 GetBaseInput()
     { 
@@ -82,7 +100,10 @@ public class FlyLeapController : MonoBehaviour
 			if (Input.GetKey(KeyCode.S)) p_Velocity += Vector3.back;
 			if (Input.GetKey(KeyCode.A)) p_Velocity += Vector3.left;
 			if (Input.GetKey(KeyCode.D)) p_Velocity += Vector3.right;
-		}
+            if (HandState) p_Velocity += Vector3.forward;
+        }
+
+      
 
         return p_Velocity;
     }
