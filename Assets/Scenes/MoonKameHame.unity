@@ -190,15 +190,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Period: 0.75
+  Period: 1
   HandModel: {fileID: 528001627}
   Thumb: 2
-  Index: 2
+  Index: 0
   Middle: 2
   Ring: 2
   Pinky: 2
-  MinimumExtendedCount: 0
-  MaximumExtendedCount: 0
+  MinimumExtendedCount: 1
+  MaximumExtendedCount: 1
   ShowGizmos: 1
 --- !u!1001 &174058684
 PrefabInstance:
@@ -2747,8 +2747,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftHand: {fileID: 0}
   _rightHand: {fileID: 0}
-  mainSpeed: 2
   rotationSpeed: 20
+  mainSpeed: 2
+  maxSpeed: 10
+  forceMagnitude: 2
 --- !u!1 &1339460483680145
 GameObject:
   m_ObjectHideFlags: 0
@@ -3885,10 +3887,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2fc4af9b254224f9a2ea29a42e4b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftHand: {fileID: 0}
-  _rightHand: {fileID: 0}
-  mainSpeed: 20
+  _leftHand: {fileID: 1689264725}
+  _rightHand: {fileID: 1898005165}
   rotationSpeed: 20
+  mainSpeed: 20
+  maxSpeed: 100
+  forceMagnitude: 10
 --- !u!136 &4968531031404869577
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3912,9 +3916,9 @@ Rigidbody:
   m_GameObject: {fileID: 4968531031404869575}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 2
   m_AngularDrag: 0.005
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -4059,7 +4063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4968531031405085451
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,7 +4118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!20 &4968531031406287081
 Camera:
   m_ObjectHideFlags: 0

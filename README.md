@@ -4,6 +4,12 @@ Test for Magic Leap and VR, allows to launch Kame Hame Ha with the hands and eva
 
 Idea and some codes from https://github.com/ccm1441/Leap-Motion-ShotMagic
 
+## Updates
+
+- Improved the Kame Hame Ha script, now it is correctly anchored to the player and works from wherever it is.
+- Explosions and terrain destruction.
+- Now you can fly with your right hand's index finger gesture.
+
 ## Plugins used
 
 * [52 Special Effects Pack](https://assetstore.unity.com/packages/vfx/particles/spells/52-special-effects-pack-10419)
