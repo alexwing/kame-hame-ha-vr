@@ -1,4 +1,5 @@
 ﻿using Leap;
+using System;
 using UnityEngine;
 
 public class FlyLeapController : MonoBehaviour
@@ -14,11 +15,20 @@ public class FlyLeapController : MonoBehaviour
     [SerializeField] private Transform _leftHand;
     [SerializeField] private Transform _rightHand;
 
-    public float rotationSpeed = 20f;       // Rotation speed.
+    [SerializeField] private Transform _RotationGestoureAnchor;
+
+
+    [Header("Score")]
+    [SerializeField] private TMPro.TextMeshPro _DistanceRotationText;
+
+
+    [Header("player")]
+    public float rotationSpeed = 5f;       // Rotation speed.
     private float shiftAdd = 25f;           // Multiplied by how long shift is held.  Basically running.
     private float maxShift = 100f;			// Maximum speed when holdin gshift.
     private float totalRun = 1f;
-    public static bool HandState = false;
+    public static bool HandStateRight = false;
+    public static bool HandStateLeft = false;
 
 
     public float mainSpeed = 70f;
@@ -30,16 +40,24 @@ public class FlyLeapController : MonoBehaviour
 
 
 
-    public void HandClosed()
+    public void HandRightClosed()
     {
-        HandState = true;
+        HandStateRight = true;
 
     }
-
-    public void HandOpened()
+    public void HandRightOpened()
     {
-        HandState = false;
+        HandStateRight = false;
+    }
 
+    public void HandLeftClosed()
+    {
+        HandStateLeft = true;
+
+    }
+    public void HandLeftOpened()
+    {
+        HandStateLeft = false;
     }
 
     private void Update()
@@ -66,10 +84,51 @@ public class FlyLeapController : MonoBehaviour
         p = p * Time.deltaTime;
 
         transform.Translate(p);
+        
+        if (HandStateLeft) GestureRotation();
 
 
+    }
+    private void GestureRotation()
+    {
+             float distance;
+             distance = Vector3.Distance(_leftHand.position, _RotationGestoureAnchor.position);
+      //  Vector3 euler = transform.rotation.eulerAngles;
+        float rotateInfluence = 0;
 
 
+        if (!Utils.IsFrontAtObject(_RotationGestoureAnchor, _leftHand))
+        {
+            _DistanceRotationText.text = "RotLeft: " + String.Format("{0:0.00}", distance);
+            rotateInfluence = -distance * Time.deltaTime * rotationSpeed;
+        }
+        else
+        {
+            _DistanceRotationText.text = "RotRight: " + String.Format("{0:0.00}", distance);
+            rotateInfluence = +distance * Time.deltaTime * rotationSpeed;
+        }
+
+
+        /*
+        bool curHatLeft = OVRInput.Get(OVRInput.Button.PrimaryShoulder);
+
+        if (curHatLeft && !prevHatLeft)
+            euler.y -= RotationRatchet;
+
+        prevHatLeft = curHatLeft;
+
+        bool curHatRight = OVRInput.Get(OVRInput.Button.SecondaryShoulder);
+
+        if (curHatRight && !prevHatRight)
+            euler.y += RotationRatchet;
+
+        prevHatRight = curHatRight;
+        */
+      //  euler.y += rotateInfluence;
+      //  transform.rotation = Quaternion.Euler(euler);
+       // GetComponent<Rigidbody>().AddForce(euler);
+        GetComponent<Rigidbody>().AddTorque(new Vector3(0, rotateInfluence,0));
+        //_DistanceRotationText.text = "Rotation: " + String.Format("{0:0.00}", distance);
     }
 
     private Vector3 GetBaseInput()
@@ -83,7 +142,7 @@ public class FlyLeapController : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) p_Velocity += Vector3.back;
         if (Input.GetKey(KeyCode.A)) p_Velocity += Vector3.left;
         if (Input.GetKey(KeyCode.D)) p_Velocity += Vector3.right;
-        if (HandState)
+        if (HandStateRight)
         {
             //   transform.position += Camera.main.transform.forward * Time.deltaTime * 20;
             //  transform.position += Vector3.Lerp(transform.position, Camera.main.transform.forward, Time.time);
@@ -94,6 +153,8 @@ public class FlyLeapController : MonoBehaviour
             Vector3 movement = Camera.main.transform.forward * mainSpeed * Time.deltaTime * 100;
             // GetComponent<Rigidbody>().MovePosition(transform.position + movement);
             GetComponent<Rigidbody>().AddForce(movement);
+
+
             //transform.position += _rightHand.GetComponent<Rigidbody>().transform.forward * Time.deltaTime * 20;
 
         }
