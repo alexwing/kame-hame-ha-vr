@@ -2,6 +2,9 @@
 
 Test for Magic Leap and VR, allows to launch Kame Hame Ha with the hands and evaluate the hits received by the enemies
 
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vBGyGWqPEm4/0.jpg)](https://www.youtube.com/watch?v=vBGyGWqPEm4)
+
 Idea and some codes from https://github.com/ccm1441/Leap-Motion-ShotMagic
 
 ## Updates
