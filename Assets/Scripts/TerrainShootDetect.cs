@@ -75,7 +75,6 @@ public class TerrainShootDetect : MonoBehaviour
     {
 
 
-        Debug.Log(collision.gameObject.name);
         /*
        if (collision.gameObject.name != "Nave" && collision.gameObject.name != "Terrain")
        {
@@ -108,7 +107,7 @@ public class TerrainShootDetect : MonoBehaviour
         {
             destroyTerrain(collision, type);
             detonationTerrain(collision);
-            Destroy(collision);
+            Destroy(collision.gameObject);
         }
 
     }

@@ -200,12 +200,6 @@ MonoBehaviour:
   MinimumExtendedCount: 1
   MaximumExtendedCount: 1
   ShowGizmos: 1
---- !u!4 &135446214 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4398069946405374, guid: aa98456c40e76f0468dff1345b5c2b7d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1658911863}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &174058684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -657,12 +651,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284337117}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: -0.04, y: -0.13, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1063680858}
-  m_Father: {fileID: 4968531031404797871}
+  m_Father: {fileID: 4968531031404788139}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!4 &311838226 stripped
@@ -830,6 +824,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0ed5922e911b343b8400997c95409c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &568205475 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4663402374140188, guid: 0089c591bcb78a54aa4d6c0bfce215bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1655639348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &736703771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,14 +1630,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1406140306}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.05, y: -0.13, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2118411472}
-  m_Father: {fileID: 4968531031404797871}
+  m_Father: {fileID: 4968531031404788139}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492847483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2571,6 +2571,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa98456c40e76f0468dff1345b5c2b7d, type: 3}
+--- !u!4 &1660942464 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4285722580966578, guid: aa98456c40e76f0468dff1345b5c2b7d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1658911863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689264724 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1209099724973928, guid: aa98456c40e76f0468dff1345b5c2b7d,
@@ -3229,6 +3235,7 @@ MonoBehaviour:
   _leftHand: {fileID: 0}
   _rightHand: {fileID: 0}
   _RotationGestoureAnchor: {fileID: 0}
+  _MoveGestoureAnchor: {fileID: 0}
   _DistanceRotationText: {fileID: 0}
   rotationSpeed: 20
   mainSpeed: 2
@@ -4080,7 +4087,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 284337118}
+  - {fileID: 1406140307}
   m_Father: {fileID: 4968531031404765383}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4094,9 +4103,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 284337118}
-  - {fileID: 1406140307}
+  m_Children: []
   m_Father: {fileID: 4968531031404730395}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4372,14 +4379,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2fc4af9b254224f9a2ea29a42e4b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftHand: {fileID: 135446214}
-  _rightHand: {fileID: 1898005165}
+  _leftHand: {fileID: 1660942464}
+  _rightHand: {fileID: 568205475}
   _RotationGestoureAnchor: {fileID: 284337118}
+  _MoveGestoureAnchor: {fileID: 1406140307}
   _DistanceRotationText: {fileID: 255742622}
   rotationSpeed: 500
-  mainSpeed: 20
-  maxSpeed: 100
-  forceMagnitude: 10
+  mainSpeed: 10
+  maxSpeed: 1000
+  forceMagnitude: 2.5
 --- !u!136 &4968531031404869577
 CapsuleCollider:
   m_ObjectHideFlags: 0

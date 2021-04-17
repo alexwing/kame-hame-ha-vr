@@ -11,11 +11,12 @@ public class FlyLeapController : MonoBehaviour
 	*/
 
 
-    [Header("Hand")]
+    [Header("HandS")]
     [SerializeField] private Transform _leftHand;
     [SerializeField] private Transform _rightHand;
 
     [SerializeField] private Transform _RotationGestoureAnchor;
+    [SerializeField] private Transform _MoveGestoureAnchor;
 
 
     [Header("Score")]
@@ -30,16 +31,12 @@ public class FlyLeapController : MonoBehaviour
     public static bool HandStateRight = false;
     public static bool HandStateLeft = false;
 
-
     public float mainSpeed = 70f;
     public float maxSpeed = 10f;
     public float forceMagnitude = 2f;
 
 
     public Controller controller;
-
-
-
     public void HandRightClosed()
     {
         HandStateRight = true;
@@ -62,40 +59,15 @@ public class FlyLeapController : MonoBehaviour
 
     private void Update()
     {
-
-
-
-        Vector3 p = GetBaseInput();
-
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            totalRun += Time.deltaTime;
-            p = p * totalRun * shiftAdd;
-            p.x = Mathf.Clamp(p.x, -maxShift, maxShift);
-            p.y = Mathf.Clamp(p.y, -maxShift, maxShift);
-            p.z = Mathf.Clamp(p.z, -maxShift, maxShift);
-        }
-        else
-        {
-            totalRun = Mathf.Clamp(totalRun * 0.5f, 1f, 1000f);
-            p = p * mainSpeed;
-        }
-
-        p = p * Time.deltaTime;
-
-        transform.Translate(p);
-        
+        if (HandStateRight) PlayerMovement();
         if (HandStateLeft) GestureRotation();
-
 
     }
     private void GestureRotation()
     {
-             float distance;
-             distance = Vector3.Distance(_leftHand.position, _RotationGestoureAnchor.position);
-      //  Vector3 euler = transform.rotation.eulerAngles;
-        float rotateInfluence = 0;
-
+        float distance;
+        distance = Vector3.Distance(_leftHand.position, _RotationGestoureAnchor.position);
+        float rotateInfluence = 0f;
 
         if (!Utils.IsFrontAtObject(_RotationGestoureAnchor, _leftHand))
         {
@@ -108,57 +80,36 @@ public class FlyLeapController : MonoBehaviour
             rotateInfluence = +distance * Time.deltaTime * rotationSpeed;
         }
 
-
-        /*
-        bool curHatLeft = OVRInput.Get(OVRInput.Button.PrimaryShoulder);
-
-        if (curHatLeft && !prevHatLeft)
-            euler.y -= RotationRatchet;
-
-        prevHatLeft = curHatLeft;
-
-        bool curHatRight = OVRInput.Get(OVRInput.Button.SecondaryShoulder);
-
-        if (curHatRight && !prevHatRight)
-            euler.y += RotationRatchet;
-
-        prevHatRight = curHatRight;
-        */
-      //  euler.y += rotateInfluence;
-      //  transform.rotation = Quaternion.Euler(euler);
-       // GetComponent<Rigidbody>().AddForce(euler);
-        GetComponent<Rigidbody>().AddTorque(new Vector3(0, rotateInfluence,0));
-        //_DistanceRotationText.text = "Rotation: " + String.Format("{0:0.00}", distance);
+        GetComponent<Rigidbody>().AddTorque(new Vector3(0, rotateInfluence, 0));
     }
 
-    private Vector3 GetBaseInput()
+    private void PlayerMovement()
     {
-        // Returns the basic values, if it's 0 than it's not active.
 
-        Vector3 p_Velocity = new Vector3();
+        float distance;
+        distance = Vector3.Distance(_rightHand.position, _MoveGestoureAnchor.position);
+        float moveInfluence = 0f;
 
 
-        if (Input.GetKey(KeyCode.W)) p_Velocity += Vector3.forward;
-        if (Input.GetKey(KeyCode.S)) p_Velocity += Vector3.back;
-        if (Input.GetKey(KeyCode.A)) p_Velocity += Vector3.left;
-        if (Input.GetKey(KeyCode.D)) p_Velocity += Vector3.right;
-        if (HandStateRight)
+        if (!Utils.IsFrontAtObject(_MoveGestoureAnchor, _rightHand))
         {
-            //   transform.position += Camera.main.transform.forward * Time.deltaTime * 20;
-            //  transform.position += Vector3.Lerp(transform.position, Camera.main.transform.forward, Time.time);
-            /// transform.position += _rightHand.transform.forward.normalized * Time.deltaTime * 20;
-            //   p_Velocity += Vector3.forward;
-            mainSpeed = Mathf.Min(mainSpeed + forceMagnitude * Time.deltaTime, maxSpeed);
-
-            Vector3 movement = Camera.main.transform.forward * mainSpeed * Time.deltaTime * 100;
-            // GetComponent<Rigidbody>().MovePosition(transform.position + movement);
-            GetComponent<Rigidbody>().AddForce(movement);
-
-
-            //transform.position += _rightHand.GetComponent<Rigidbody>().transform.forward * Time.deltaTime * 20;
-
+            _DistanceRotationText.text = "moveFront: " + String.Format("{0:0.00}", distance);
+            moveInfluence = distance * Time.deltaTime * rotationSpeed;
+        }
+        else
+        {
+            _DistanceRotationText.text = "MoveBack: " + String.Format("{0:0.00}", distance);
+            moveInfluence = -distance * Time.deltaTime * rotationSpeed;
         }
 
-        return p_Velocity;
+        // float CurrentSpeed = Mathf.Min(mainSpeed * forceMagnitude * Time.deltaTime, maxSpeed);
+        float CurrentSpeed = Mathf.Min(mainSpeed * moveInfluence * (forceMagnitude + Time.deltaTime), maxSpeed);
+
+        Vector3 movement = Camera.main.transform.forward * CurrentSpeed;
+        // GetComponent<Rigidbody>().MovePosition(transform.position + movement);
+        GetComponent<Rigidbody>().AddForce(movement);
+
+
+
     }
 }
