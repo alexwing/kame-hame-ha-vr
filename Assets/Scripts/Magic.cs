@@ -28,6 +28,10 @@ public class Magic : MonoBehaviour
     public float _handDistance = 0.1f;
 
     [Header("Kame Hame Ha")]
+    [Tooltip("Destroy distance from camera")]
+    [Range(0f, 10000f)]
+    public float _destroyDistance = 1000f;    
+    
     [Tooltip("Max size of Kame Hame Ha.")]
     [Range(0f, 8f)]
     public float _kameHameMaxSize = 2f;
@@ -115,7 +119,7 @@ public class Magic : MonoBehaviour
         _currentEffect = Instantiate(_magicArray[index], _kames);
         _currentEffect.name = "kamehameha";
         _currentEffect.transform.parent = _kames;
-        _currentEffect.GetComponent<DestoryEffect>().SetMagic(instance);
+        _currentEffect.GetComponent<DestroyKameHameHa>().Distance = _destroyDistance;
 
         _magicRd = _currentEffect.GetComponent<Rigidbody>();
 

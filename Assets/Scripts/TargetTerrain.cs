@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TerrainShootDetect : MonoBehaviour
+public class TargetTerrain : MonoBehaviour
 {
 
     public TerrainData tData;

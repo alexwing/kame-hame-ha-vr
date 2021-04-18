@@ -449,9 +449,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 224775372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fec56bb984a005498e832b877a69aca, type: 3}
+  m_Script: {fileID: 11500000, guid: 7bd49945bfbbf8a4690efc6401b0760f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1583132409}
+  _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
+  _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
+  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
+    type: 3}
+  explosionLife: 5
+  detailLevel: 1
+  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!1 &255742621
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,7 +1973,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583132408}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7, y: 14, z: 1}
@@ -2811,7 +2819,7 @@ MonoBehaviour:
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
     type: 3}
-  explosionLife: 10
+  explosionLife: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &1904312295
@@ -3082,7 +3090,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091104043}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7, y: 14, z: 1}
@@ -3104,7 +3112,7 @@ MonoBehaviour:
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
     type: 3}
-  explosionLife: 10
+  explosionLife: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &2091104048
@@ -3302,10 +3310,11 @@ MonoBehaviour:
   _leftHand: {fileID: 1689264725}
   _rightHand: {fileID: 1898005165}
   _handDistance: 0.5
+  _destroyDistance: 1000
   _kameHameMaxSize: 4.25
   _kameHameHaPosition: 0.5
   _kameHameHaShootMagnitude: 1
-  _kameHameHaShootVelocity: 1500
+  _kameHameHaShootVelocity: 1400
   _magicArray:
   - {fileID: 400004, guid: aeae58bf37a687647adec1a709ea4bd4, type: 3}
   - {fileID: 322934440827122803, guid: 7f4cd52014748b049b82f29f755c1278, type: 3}
@@ -3485,7 +3494,7 @@ MonoBehaviour:
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
     type: 3}
-  explosionLife: 10
+  explosionLife: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
 --- !u!54 &698890703259502638
@@ -3617,7 +3626,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3373062388540405065}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7, y: 14, z: 1}
