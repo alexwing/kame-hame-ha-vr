@@ -1,5 +1,4 @@
 ﻿
-using System.Collections;
 using UnityEngine;
 
 public class DestroyKameHameHa : MonoBehaviour
@@ -17,10 +16,7 @@ public class DestroyKameHameHa : MonoBehaviour
         float cameraDistance = Vector3.Distance(Camera.main.transform.position, transform.position);
         if (cameraDistance > Distance)
         {
-
             Destroy(gameObject);
-
-
         }
     }
 

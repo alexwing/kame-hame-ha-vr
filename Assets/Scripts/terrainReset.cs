@@ -1,8 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/**
+ * Reset terrain from TerrainData Backup
+ */
 
-public class terrainReset : MonoBehaviour {
+using UnityEngine;
 
+public class TerrainReset : MonoBehaviour {
 	
 	public Terrain Terrain;
     public TerrainData terrainData;

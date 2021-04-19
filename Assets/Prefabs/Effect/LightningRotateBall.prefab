@@ -18865,8 +18865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5212786ebec42744687c9fc7075d1a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FrameRate: 2
-  Distance: 30
+  FrameRate: 1
+  Distance: 5
 --- !u!135 &1294865337
 SphereCollider:
   m_ObjectHideFlags: 0
