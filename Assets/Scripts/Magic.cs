@@ -21,8 +21,6 @@ public class Magic : MonoBehaviour
     private Vector3 _leftHandLastValid;
     private Vector3 _rightHandLastValid;
 
-    private Rigidbody _leftHandRd;
-    private Rigidbody _rightHandRd;
     [Tooltip("Hand distance to init Kame Hame Ha.")]
     [Range(0f, 5f)]
     public float _handDistance = 0.1f;
@@ -40,25 +38,38 @@ public class Magic : MonoBehaviour
     [Range(-3f, 3f)]
     public float _kameHameHaPosition = 0.5f;
     [Tooltip("Hands shoot intensity of Kame Hame Ha.")]
-    [Range(0f, 50f)]
-    public float _kameHameHaShootMagnitude = 4f;
+    [Range(0f, 5f)]
+    public float _kameHameHaShootMagnitude = 1f;
     [Tooltip("Velocity of Kame Hame Ha.")]
     [Range(0, 3000)]
     public int _kameHameHaShootVelocity = 50;
-    private float distance;
+
+    [Tooltip("Velocity multiplier.")]
+    [Range(0, 500)]
+    public int _kameHameHaShootMaxMultiplier =10;
+
+
+    [Tooltip("Velocity limit.")]
+    [Range(0, 50000)]
+    public int _kameHameHaShootlimit = 10000;
+
 
     [Header("Effect")]
     [SerializeField] private Transform[] _magicArray;
     private Transform _currentEffect;
-    private Rigidbody _magicRd;
-    private int index;
-    // private bool _activeMagic;
-    private List<ParticleSystem> _magicParticleList;
 
     [Header("Score")]
     [SerializeField] private TMPro.TextMeshPro _aimPercentText;
     [SerializeField] private TMPro.TextMeshPro _hitsText;
     [SerializeField] private TMPro.TextMeshPro _DistanceText;
+    private float distance;
+    private Rigidbody _magicRd;
+    private int index;
+    private Rigidbody _leftHandRd;
+    private Rigidbody _rightHandRd;
+    private List<ParticleSystem> _magicParticleList;
+
+
     private float _shotCount;
     public static float _hitCount;
 
@@ -80,18 +91,16 @@ public class Magic : MonoBehaviour
     {
 
 
-        //     var speed = Vector3.Dot(_leftHandRd.velocity, _leftHandRd.transform.up * -1);
-        //      _hitsText.text = "speed: " + speed;
         // Measure the distance between both palms
         distance = Vector3.Distance(_leftHand.position, _rightHand.position);
         _DistanceText.text = "Distance: " + String.Format("{0:0.00}", distance);
 
+        // limit kame hame size
         if (distance > _kameHameMaxSize)
         {
             distance = _kameHameMaxSize;
         }
-
-        // Debug.Log(distance);
+      
         // The distance is less than 0.1 and no magic is generated.
         if (distance < _handDistance && _currentEffect == null)
         {
@@ -104,22 +113,20 @@ public class Magic : MonoBehaviour
             return;
         }
 
-        // Magic firing
+        // kame hame firing
         ShotMagic();
     }
 
 
     private void CreateEffect()
     {
-        // reset
-        //_activeMagic = true;
 
         // Generated after determining the effect at random
         index = UnityEngine.Random.Range(0, _magicArray.Length);
         _currentEffect = Instantiate(_magicArray[index], _kames);
         _currentEffect.name = "kamehameha";
         _currentEffect.transform.parent = _kames;
-        _currentEffect.GetComponent<DestroyKameHameHa>().Distance = _destroyDistance;
+        _currentEffect.GetComponent<KameHameHa>().Distance = _destroyDistance;
 
         _magicRd = _currentEffect.GetComponent<Rigidbody>();
 
@@ -141,11 +148,6 @@ public class Magic : MonoBehaviour
              return;
          }*/
 
-        // Set the effect position to the center of both hands
-       // _currentEffect.parent = transform;
-
-        //    Debug.Log("hads active" + _leftHandRd.gameObject.activeSelf + "+"+ _rightHand.gameObject.activeSelf);
-      //  Debug.Log("hads position" + _leftHand.position + "+" + _rightHand.position);
 
         if (!_leftHandRd.gameObject.activeInHierarchy)
         {
@@ -176,12 +178,27 @@ public class Magic : MonoBehaviour
 
         // When the strength of both hands is greater than 2 and the distance is greater than 0.2, magic is fired.
         var midway = _leftHandRd.transform.up + _rightHandRd.transform.up;
-        var speed = Vector3.Dot(midway, _leftHandRd.transform.up);
-        _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
+        float speed = Vector3.Dot(midway, _rightHandRd.transform.up);
+
+
 
         if (speed > _kameHameHaShootMagnitude)
         {
-            _magicRd.AddForce(midway * speed * _kameHameHaShootVelocity);
+            speed = (speed - _kameHameHaShootMagnitude) * _kameHameHaShootVelocity * _kameHameHaShootMaxMultiplier;
+            if (speed < _kameHameHaShootMagnitude * _kameHameHaShootVelocity /2)
+            {
+                speed = _kameHameHaShootMagnitude * _kameHameHaShootVelocity /2;
+
+            }
+            if (speed > _kameHameHaShootlimit)
+            {
+                speed = _kameHameHaShootlimit;
+            }
+
+            _currentEffect.GetComponent<KameHameHa>().Size = distance  * 100 / _kameHameMaxSize;
+            _currentEffect.GetComponent<KameHameHa>().Velocity = _kameHameHaShootlimit / speed; 
+           _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
+            _magicRd.AddForce(midway  * speed); 
             _magicRd = null;
             _currentEffect = null;
             _shotCount++;
@@ -195,7 +212,7 @@ public class Magic : MonoBehaviour
     {
         var percent = _hitCount / _shotCount * 100;
 
-      //  _aimPercentText.text = "Accuracy: " + percent.ToString("F1") + "%";
+        _aimPercentText.text = "Hits: " + percent.ToString("F1") + "%";
         //   _hitsText.text = "Hits: " + _hitCount ;
     }
 

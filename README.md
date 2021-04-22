@@ -12,6 +12,10 @@ Idea and some codes from https://github.com/ccm1441/Leap-Motion-ShotMagic
 - Improved the Kame Hame Ha script, now it is correctly anchored to the player and works from wherever it is.
 - Explosions and terrain destruction.
 - Now you can fly with your right hand's index finger gesture.
+- Now you can rotate with your left hand's index finger gesture.
+- Kame hame ha proportional velocity from hands impulse.
+- Add destruction terrain size from kame hame ha size
+- Add physics to targets, when destroy timeout return to origin position
 
 ## Plugins used
 

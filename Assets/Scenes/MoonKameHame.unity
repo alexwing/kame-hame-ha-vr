@@ -190,7 +190,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Period: 1
+  Period: 1.4
   HandModel: {fileID: 528001627}
   Thumb: 2
   Index: 0
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rotation: '
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -946,10 +946,16 @@ MonoBehaviour:
   currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
     type: 3}
   explosionLife: 6
-  detailLevel: 1
-  terrainDestructSize: 1
-  terrainDestructHeight: 1
+  terrainDestructHeight: 0.2
+  ramdomExplosion: 0.022
   brush: {fileID: 2800000, guid: c659d7326f84510419eefa921234e9d7, type: 3}
+  Listbrush:
+  - {fileID: 2800000, guid: c659d7326f84510419eefa921234e9d7, type: 3}
+  - {fileID: 2800000, guid: 6b96469662b40cb4d82bedd492be395d, type: 3}
+  - {fileID: 2800000, guid: e84414524c77af5499a36511b993b44e, type: 3}
+  - {fileID: 2800000, guid: 72f63b332d5c8cf49bbc987eef05a028, type: 3}
+  offsetx: -1
+  offsety: 1
   type: 0
   clip: {fileID: 8300000, guid: 4bb527c4eb5b08c44b8d24a14a6ab3ce, type: 3}
 --- !u!1 &913121350
@@ -1285,7 +1291,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Period: 0.4
+  Period: 0.8
   HandModel: {fileID: 311838228}
   Thumb: 2
   Index: 0
@@ -2043,6 +2049,7 @@ MonoBehaviour:
   _restoreTime: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &1583132413
 Rigidbody:
@@ -2942,6 +2949,7 @@ MonoBehaviour:
   _restoreTime: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &1904312295
 Rigidbody:
@@ -3298,6 +3306,7 @@ MonoBehaviour:
   _restoreTime: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &2091104048
 Rigidbody:
@@ -3457,7 +3466,6 @@ MonoBehaviour:
   _rightHand: {fileID: 0}
   _RotationGestoureAnchor: {fileID: 0}
   _MoveGestoureAnchor: {fileID: 0}
-  _DistanceRotationText: {fileID: 0}
   rotationSpeed: 20
   mainSpeed: 2
   maxSpeed: 10
@@ -3526,8 +3534,10 @@ MonoBehaviour:
   _destroyDistance: 1000
   _kameHameMaxSize: 4.25
   _kameHameHaPosition: 0.5
-  _kameHameHaShootMagnitude: 1
-  _kameHameHaShootVelocity: 1400
+  _kameHameHaShootMagnitude: 1.2
+  _kameHameHaShootVelocity: 800
+  _kameHameHaShootMaxMultiplier: 90
+  _kameHameHaShootlimit: 20000
   _magicArray:
   - {fileID: 400004, guid: aeae58bf37a687647adec1a709ea4bd4, type: 3}
   - {fileID: 322934440827122803, guid: 7f4cd52014748b049b82f29f755c1278, type: 3}
@@ -3725,6 +3735,7 @@ MonoBehaviour:
   _restoreTime: 5
   detailLevel: 1
   clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &698890703259502638
 Rigidbody:
@@ -4636,7 +4647,6 @@ MonoBehaviour:
   _rightHand: {fileID: 568205475}
   _RotationGestoureAnchor: {fileID: 284337118}
   _MoveGestoureAnchor: {fileID: 1406140307}
-  _DistanceRotationText: {fileID: 255742622}
   rotationSpeed: 500
   mainSpeed: 10
   maxSpeed: 1000

@@ -4769,7 +4769,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &1106192870058210803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4784,6 +4784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FrameRate: 1
   Distance: 5
+  Size: 1
+  Velocity: 1
 --- !u!135 &757692760
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4795,7 +4797,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &322934440826955867
 GameObject:

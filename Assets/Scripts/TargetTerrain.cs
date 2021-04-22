@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class TargetTerrain : MonoBehaviour
 {
@@ -7,17 +6,30 @@ public class TargetTerrain : MonoBehaviour
     public TerrainData tData;
     public GameObject currentDetonatorTerrain;
     public float explosionLife = 10;
-    public float detailLevel = 1.0f;
+
 
     [Header("Terrain Destrucion")]
-    [Tooltip("Size of terrain destruction")]
-    [Range(0f,10f)]
-    public int terrainDestructSize = 3;
     [Tooltip("Height of terrain destruction")]
-    [Range(0f, 100)]
-    public int terrainDestructHeight = 10;
+    [Range(0f, 10f)]
+    public float terrainDestructHeight = 0.20f;
+    [Tooltip("Ramdom explosion particles system")]
+    [Range(0f, 1f)]
+    public float ramdomExplosion = 1.0f;
+
     //public float shootDistanceToDestroy = 500.0f;
+    [Tooltip("Ramdom explosion particles system")]
     public Texture2D brush;
+    [SerializeField] private Texture2D[] Listbrush;
+
+
+    [Tooltip("offsetX")]
+    [Range(-20, 20)]
+    public int offsetx = 1;
+
+
+    [Tooltip("offsetY")]
+    [Range(-20, 20)]
+    public int offsety = 1;
 
     public bool type;
 
@@ -26,9 +38,8 @@ public class TargetTerrain : MonoBehaviour
 
     void Start()
     {
-        textureFix();
 
-        //  Destroy(gameObject, lifetime);
+
     }
 
     void textureFix()
@@ -54,57 +65,13 @@ public class TargetTerrain : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-
-
-
-        //	Debug.Log("shootDistanceToDestroy "+ shootDistanceToDestroy +" x " +  transform.position.x );
-        //	Debug.ClearDeveloperConsole ();
-        /*
-            if(transform.position.x > shootDistanceToDestroy || transform.position.x < -shootDistanceToDestroy 
-               || transform.position.z > shootDistanceToDestroy || transform.position.z < -shootDistanceToDestroy
-               || transform.position.y > shootDistanceToDestroy || transform.position.y < -shootDistanceToDestroy)
-            if (transform.position.x > shootDistanceToDestroy )
-            {
-                Destroy(this.gameObject);
-            }*/
-    }
-
     void OnTriggerEnter(Collider collision)
     {
-
-
-        /*
-       if (collision.gameObject.name != "Nave" && collision.gameObject.name != "Terrain")
-       {
-           Physics.IgnoreCollision(this.GetComponent<Collider>(), collision);
-       }
-       if (collision.gameObject.name != "OVRPlayerController" && collision.gameObject.name != "R Cube" && collision.gameObject.name != "L Cube") {
-
-            //if (collision.gameObject.transform.parent.gameObject.name != "limit") {
-            detonation();
-            //}
-            //Debug.Log("detonacion a " + collision.gameObject.transform.parent.gameObject.name);
-            Destroy(this.gameObject);
-
-        }
-        if (collision.gameObject.name == "Barril") {
-
-
-            //Object clone;
-            //clone = Instantiate(collision.gameObject, collision.gameObject.transform.position, collision.gameObject.transform.rotation) as Object;
-            ////clone.velocity = transform.TransformDirection(Vector3.forward * 100);
-            if(collision.gameObject.GetComponent<Rigidbody>()){
-                collision.gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward  *1100);
-            }else{
-                Destroy(collision.gameObject);
-            }
-
-        }*/
-        Debug.Log("colision " + collision.gameObject.name);
         if (collision.gameObject.name == "kamehameha")
         {
+
+
+
             destroyTerrain(collision, type);
             detonationTerrain(collision);
             Destroy(collision.gameObject);
@@ -114,10 +81,15 @@ public class TargetTerrain : MonoBehaviour
 
 
 
-
-
     void destroyTerrain(Collider collision, bool type)
     {
+
+
+        float normalizedValue = Mathf.InverseLerp(0, 100, (int)collision.GetComponent<KameHameHa>().Size);
+        int brushSize = (int) Mathf.Lerp(0, Listbrush.Length, normalizedValue);
+
+        brush = Listbrush[brushSize];
+        textureFix();
 
         Terrain terr = GetComponent<Terrain>();
         // get the normalized position of this game object relative to the terrain
@@ -127,15 +99,30 @@ public class TargetTerrain : MonoBehaviour
         int hmWidth = terr.terrainData.heightmapResolution;
         int hmHeight = terr.terrainData.heightmapResolution;
 
+
+
+        //int hmWidth = Mathf.RoundToInt(collision.GetComponent<KameHameHa>().Size)*10; 
+        //    int hmHeight = Mathf.RoundToInt(collision.GetComponent<KameHameHa>().Size)*10;
+        //float ExplosionVelocity = collision.GetComponent<KameHameHa>().Velocity;
+
+        float normalizedValueVelocity = Mathf.InverseLerp(0, 10, (int)collision.GetComponent<KameHameHa>().Velocity);
+        float ExplosionVelocity = Mathf.Lerp(terrainDestructHeight,0.1f , normalizedValueVelocity);
+
+
+        Debug.Log($"ExplosionVelocity {ExplosionVelocity}");
+
         coord.x = tempCoord.x / terr.terrainData.size.x;
         coord.y = tempCoord.y / terr.terrainData.size.y;
         coord.z = tempCoord.z / terr.terrainData.size.z;
 
         int size = brush.width;
-        int offset = size / 2;
+        int offset = Mathf.RoundToInt( size / 2);
 
         int x = (int)(coord.x * hmWidth) - offset;
-        int y = (int)(coord.z * hmHeight) + offset;
+        int y = (int)(coord.z * hmHeight) - offset ;
+
+       // int x = (int)(coord.x * hmWidth) + offsetx;
+     //   int y = (int)(coord.z * hmHeight) + offsety;
 
 
         float[,] areaT;
@@ -149,11 +136,11 @@ public class TargetTerrain : MonoBehaviour
                     Color texPixel = brush.GetPixel(i, j);
                     if (type)
                     {
-                        areaT[i, j] += texPixel.grayscale *  terrainDestructHeight /100;
+                        areaT[i, j] += texPixel.grayscale *   ExplosionVelocity ;
                     }
                     else
                     {
-                        areaT[i, j] -= texPixel.grayscale *  terrainDestructHeight /100;
+                        areaT[i, j] -= texPixel.grayscale *   ExplosionVelocity ;
                     }
 
                     //areaT[i, j] = 0;
@@ -172,37 +159,26 @@ public class TargetTerrain : MonoBehaviour
     void detonationTerrain(Collider collision)
     {
 
-        //  Component dTemp = currentDetonatorTerrain.GetComponent("Detonator");
+        Destroy(Instantiate(currentDetonatorTerrain, collision.transform.position, Quaternion.identity), explosionLife);
 
-        //float offsetSize = dTemp.size/3;
 
-        GameObject exp = (GameObject)Instantiate(collision.gameObject, collision.transform.position, Quaternion.identity);
-        GameObject exp2 = (GameObject)Instantiate(currentDetonatorTerrain, collision.transform.position, Quaternion.identity);
+
+        float normalizedValue = Mathf.InverseLerp(0, 100, (int)collision.GetComponent<KameHameHa>().Size);
+        int explosionSize = (int)Mathf.Lerp(0, 10, normalizedValue);
+
+
+        //float ExplosionVelocity = collision.GetComponent<KameHameHa>().Velocity;
+       // Debug.Log("Size" + collision.GetComponent<KameHameHa>().Size + " -- " + explosionSize + " -- " + ExplosionVelocity);
+
+        for (int i = 0; i < explosionSize; i++)
+        {
+            Destroy(Instantiate(currentDetonatorTerrain, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion, true).position, Quaternion.identity), explosionLife);
+        }
         AudioSource.PlayClipAtPoint(clip, collision.transform.position);
-        // dTemp = exp.GetComponent("Detonator");
-        //dTemp.detail = detailLevel;
 
-        Destroy(exp, explosionLife/3);
-        Destroy(exp2, explosionLife);
-
+    }
 
 
 
     }
-    /*   void detonation (){
 
-           //Component dTemp = currentDetonator.GetComponent("Detonator");
-
-           //float offsetSize = dTemp.size/3;
-
-           GameObject exp = (GameObject) Instantiate(currentDetonator, transform.position, Quaternion.identity);
-           AudioSource.PlayClipAtPoint(clip, transform.position);
-           //dTemp = exp.GetComponent("Detonator");
-           //dTemp.detail = detailLevel;
-
-           Destroy(exp, explosionLife);
-
-
-
-       }*/
-}

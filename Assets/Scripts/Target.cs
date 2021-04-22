@@ -18,6 +18,9 @@ public class Target : MonoBehaviour
     private bool newHit = false;
     public AudioClip clip;
     private float currentTime =0;
+    [Tooltip("Ramdom explosion particles system")]
+    [Range(0f, 1f)]
+    public float ramdomExplosion = 0.22f;
 
     [SerializeField] private int FrameRate = 1;
 
@@ -37,22 +40,22 @@ public class Target : MonoBehaviour
                 Debug.Log("currentTime: " + currentTime + ">" + _restoreTime);
                 _meshRenderer.material = _original;
                 gameObject.GetComponent<TargetSnap>().interactable = false;
+
             }
         }
 
     }
     private void OnTriggerEnter(Collider other)
     {
-       // StopCoroutine(Hit());
 
 
 
-         newHit = true;
-
-        _meshRenderer.material = _hit;
         currentTime = 0;
-      //  StartCoroutine(Hit());
         gameObject.GetComponent<TargetSnap>().interactable = true;
+        //if (other.gameObject.name == "Terrain") return;
+        newHit = true;
+        _meshRenderer.material = _hit;
+
         if (other.gameObject.name == "kamehameha")
         {
             detonation(other);
@@ -63,41 +66,27 @@ public class Target : MonoBehaviour
         }           
     }
 
+
+
     void detonation(Collider collision)
     {
-        GameObject exp = (GameObject)Instantiate(collision.gameObject, collision.transform.position, Quaternion.identity);
-        GameObject exp2 = (GameObject)Instantiate(currentDetonator, collision.transform.position, Quaternion.identity);
+
+        Destroy(Instantiate(currentDetonator, collision.transform.position, Quaternion.identity), explosionLife);
+
+
+
+        float normalizedValue = Mathf.InverseLerp(0, 100, (int)collision.GetComponent<KameHameHa>().Size);
+        int explosionSize = (int)Mathf.Lerp(0, 10, normalizedValue);
+
+
+        //float ExplosionVelocity = collision.GetComponent<KameHameHa>().Velocity;
+        // Debug.Log("Size" + collision.GetComponent<KameHameHa>().Size + " -- " + explosionSize + " -- " + ExplosionVelocity);
+
+        for (int i = 0; i < explosionSize; i++)
+        {
+            Destroy(Instantiate(currentDetonator, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion,true).position, Quaternion.identity), explosionLife);
+        }
         AudioSource.PlayClipAtPoint(clip, collision.transform.position);
 
-        Destroy(exp, explosionLife / 4);
-        Destroy(exp2, explosionLife);
     }
-    /*
-    IEnumerator Hit()
-    {
-
-        for (int i = 0; i < _restoreTime; i++)
-        {
-            if (newHit)
-            {
-                
-                     yield break;
-
-            }
-            yield return new WaitForSeconds(1.0f);
-        }
-        if (newHit)
-        {
-            newHit = false;
-
-        }
-        else
-        {
-            _meshRenderer.material = _original;
-            gameObject.GetComponent<TargetSnap>().interactable = false;
-        }
-
-
-    }
-    */
 }

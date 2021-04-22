@@ -1,11 +1,13 @@
 ﻿
 using UnityEngine;
 
-public class DestroyKameHameHa : MonoBehaviour
+public class KameHameHa : MonoBehaviour
 {
 
     [SerializeField] private int FrameRate = 1;
-    [SerializeField] public float Distance = 20;
+    public float Distance = 20;
+    public float Size = 1;
+    public float Velocity = 1;
     void Start()
     {
         InvokeRepeating("CheckDistance", 0, 0.5f / FrameRate);
