@@ -86,7 +86,7 @@ public class TargetTerrain : MonoBehaviour
 
 
         float normalizedValue = Mathf.InverseLerp(0, 100, (int)collision.GetComponent<KameHameHa>().Size);
-        int brushSize = (int) Mathf.Lerp(0, Listbrush.Length, normalizedValue);
+        int brushSize = (int) Mathf.Lerp(0, Listbrush.Length-1, normalizedValue);
 
         brush = Listbrush[brushSize];
         textureFix();

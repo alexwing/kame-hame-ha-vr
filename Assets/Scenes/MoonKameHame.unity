@@ -957,7 +957,7 @@ MonoBehaviour:
   offsetx: -1
   offsety: 1
   type: 0
-  clip: {fileID: 8300000, guid: 4bb527c4eb5b08c44b8d24a14a6ab3ce, type: 3}
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
 --- !u!1 &913121350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2048,7 +2048,7 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &1583132413
@@ -2948,7 +2948,7 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &1904312295
@@ -3305,7 +3305,7 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &2091104048
@@ -3508,6 +3508,7 @@ GameObject:
   - component: {fileID: 4554978325337775}
   - component: {fileID: 114473456795796937}
   - component: {fileID: 1671192349943264}
+  - component: {fileID: 1671192349943265}
   m_Layer: 0
   m_Name: Hand Models
   m_TagString: Untagged
@@ -3535,9 +3536,9 @@ MonoBehaviour:
   _kameHameMaxSize: 4.25
   _kameHameHaPosition: 0.5
   _kameHameHaShootMagnitude: 1.2
-  _kameHameHaShootVelocity: 800
-  _kameHameHaShootMaxMultiplier: 90
-  _kameHameHaShootlimit: 20000
+  _kameHameHaShootVelocity: 3000
+  _kameHameHaShootMaxMultiplier: 345
+  _kameHameHaShootlimit: 100000
   _magicArray:
   - {fileID: 400004, guid: aeae58bf37a687647adec1a709ea4bd4, type: 3}
   - {fileID: 322934440827122803, guid: 7f4cd52014748b049b82f29f755c1278, type: 3}
@@ -3549,6 +3550,105 @@ MonoBehaviour:
   _aimPercentText: {fileID: 1607129484}
   _hitsText: {fileID: 1492847485}
   _DistanceText: {fileID: 1401285830}
+  AudioSourceKame: {fileID: 1671192349943265}
+  Create: {fileID: 8300000, guid: 3eefe61359ea80b469796e4eebb3c81b, type: 3}
+  Launch: {fileID: 8300000, guid: 544892a4a1654ee419e21a9f3fff5b6f, type: 3}
+--- !u!82 &1671192349943265
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671192349943263}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &4050235648832943
 Transform:
   m_ObjectHideFlags: 0
@@ -3734,7 +3834,7 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 518ba9936d20b554f98e8472b29da0b5, type: 3}
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
 --- !u!54 &698890703259502638

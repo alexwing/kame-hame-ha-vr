@@ -41,16 +41,16 @@ public class Magic : MonoBehaviour
     [Range(0f, 5f)]
     public float _kameHameHaShootMagnitude = 1f;
     [Tooltip("Velocity of Kame Hame Ha.")]
-    [Range(0, 3000)]
+    [Range(0, 30000)]
     public int _kameHameHaShootVelocity = 50;
 
     [Tooltip("Velocity multiplier.")]
-    [Range(0, 500)]
+    [Range(0, 1500)]
     public int _kameHameHaShootMaxMultiplier =10;
 
 
     [Tooltip("Velocity limit.")]
-    [Range(0, 50000)]
+    [Range(0, 1000000)]
     public int _kameHameHaShootlimit = 10000;
 
 
@@ -68,6 +68,10 @@ public class Magic : MonoBehaviour
     private Rigidbody _leftHandRd;
     private Rigidbody _rightHandRd;
     private List<ParticleSystem> _magicParticleList;
+    [Header("Sound")]
+    public AudioSource AudioSourceKame;
+    public AudioClip Create;
+    public AudioClip Launch;
 
 
     private float _shotCount;
@@ -120,7 +124,7 @@ public class Magic : MonoBehaviour
 
     private void CreateEffect()
     {
-
+       
         // Generated after determining the effect at random
         index = UnityEngine.Random.Range(0, _magicArray.Length);
         _currentEffect = Instantiate(_magicArray[index], _kames);
@@ -129,6 +133,10 @@ public class Magic : MonoBehaviour
         _currentEffect.GetComponent<KameHameHa>().Distance = _destroyDistance;
 
         _magicRd = _currentEffect.GetComponent<Rigidbody>();
+
+        AudioSourceKame.clip = Create;
+        AudioSourceKame.loop = true;
+        AudioSourceKame.Play();
 
         _magicParticleList.Clear();
 
@@ -167,6 +175,7 @@ public class Magic : MonoBehaviour
             _rightHandLastValid = _rightHand.position;
         }
 
+        AudioSourceKame.pitch = distance;
 
         Vector3 middlePosition = _leftHand.position - ((_leftHand.position - _rightHand.position) / 2);
 
@@ -194,10 +203,18 @@ public class Magic : MonoBehaviour
             {
                 speed = _kameHameHaShootlimit;
             }
+            AudioSourceKame.Stop();
+            AudioSourceKame.clip = Launch;
+            AudioSourceKame.loop = false;
+            float normalizedValue = Mathf.InverseLerp(_kameHameHaShootVelocity,_kameHameHaShootlimit, speed);
+            float pitch = Mathf.Lerp(0.5f, 2.5f, normalizedValue);
 
+            AudioSourceKame.pitch = pitch;
+            _currentEffect.GetComponent<KameHameHa>().Velocity = _kameHameHaShootlimit / speed;
+            AudioSourceKame.Play();
             _currentEffect.GetComponent<KameHameHa>().Size = distance  * 100 / _kameHameMaxSize;
-            _currentEffect.GetComponent<KameHameHa>().Velocity = _kameHameHaShootlimit / speed; 
-           _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
+
+            _hitsText.text = "Speed: " + String.Format("{0:0.00}", speed);
             _magicRd.AddForce(midway  * speed); 
             _magicRd = null;
             _currentEffect = null;
