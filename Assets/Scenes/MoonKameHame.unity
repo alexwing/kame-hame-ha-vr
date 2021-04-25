@@ -945,7 +945,7 @@ MonoBehaviour:
   tData: {fileID: 15600000, guid: 5a2585971f88ee14ea0dc432488a27d9, type: 2}
   currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
     type: 3}
-  explosionLife: 6
+  explosionLife: 18
   terrainDestructHeight: 8
   terrainDestructWidth: 30
   ramdomExplosion: 0.022
@@ -2072,7 +2072,7 @@ MonoBehaviour:
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonator: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff, type: 3}
-  explosionLife: 5
+  explosionLife: 18
   _restoreTime: 5
   detailLevel: 1
   ramdomExplosion: 0.22
@@ -2973,7 +2973,7 @@ MonoBehaviour:
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonator: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff, type: 3}
-  explosionLife: 5
+  explosionLife: 18
   _restoreTime: 5
   detailLevel: 1
   ramdomExplosion: 0.22
@@ -3331,7 +3331,7 @@ MonoBehaviour:
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonator: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff, type: 3}
-  explosionLife: 5
+  explosionLife: 18
   _restoreTime: 5
   detailLevel: 1
   ramdomExplosion: 0.22
@@ -3862,7 +3862,7 @@ MonoBehaviour:
   _original: {fileID: 2100000, guid: 07553007ceddacc47bac6a131f3dc619, type: 2}
   _hit: {fileID: 2100000, guid: 8ce7ebaae88fe3044989871ba74c5d86, type: 2}
   currentDetonator: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff, type: 3}
-  explosionLife: 5
+  explosionLife: 18
   _restoreTime: 5
   detailLevel: 1
   ramdomExplosion: 0.22

@@ -174,10 +174,19 @@ public class TargetTerrain : MonoBehaviour
 
 
 
+
         float normalizedValue = Mathf.InverseLerp(0, 100, (int)collision.GetComponent<KameHameHa>().Size);
-        int explosionSize = (int)Mathf.Lerp(0, 10, normalizedValue);
+        float explosionSize = Mathf.Lerp(0, terrainDestructWidth, normalizedValue)  ;
 
 
+        GameObject _currentEffect = Instantiate(collision.gameObject, collision.transform.position, Quaternion.identity);
+
+
+        for (int i = 0; i < _currentEffect.transform.childCount; i++) {
+            _currentEffect.transform.GetChild(i).transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize) *0.1f;
+        }
+
+        Destroy(_currentEffect, 0.25f);
         //float ExplosionVelocity = collision.GetComponent<KameHameHa>().Velocity;
         // Debug.Log("Size" + collision.GetComponent<KameHameHa>().Size + " -- " + explosionSize + " -- " + ExplosionVelocity);
 
