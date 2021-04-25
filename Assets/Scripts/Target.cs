@@ -16,13 +16,19 @@ public class Target : MonoBehaviour
     public int _restoreTime = 15;
     public float detailLevel = 1.0f;
     private bool newHit = false;
-    public AudioClip clip;
+
     private float currentTime =0;
     [Tooltip("Ramdom explosion particles system")]
     [Range(0f, 1f)]
     public float ramdomExplosion = 0.22f;
 
     [SerializeField] private int FrameRate = 1;
+
+    [Header("Sound Destrucion")]
+    public AudioClip clip;
+    [Tooltip("Width of terrain destruction")]
+    [Range(0, 1500)]
+    public int DistanceSoundLimit = 500;
 
     void Start()
     {
@@ -86,7 +92,10 @@ public class Target : MonoBehaviour
         {
             Destroy(Instantiate(currentDetonator, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion,true).position, Quaternion.identity), explosionLife);
         }
-        AudioSource.PlayClipAtPoint(clip, collision.transform.position);
+        Utils.PlaySound(clip, collision.transform, Camera.main.transform, DistanceSoundLimit);
 
     }
+
+
+
 }

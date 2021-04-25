@@ -478,6 +478,22 @@ public class Utils
         return obj;
     }
 
+    public static void PlaySound(AudioClip clip, Transform collision, Transform player, int DistanceSoundLimit)
+    {
+        float cameraDistance = Vector3.Distance(player.position, collision.position);
 
+
+        float normalizedValue = Mathf.InverseLerp(0, DistanceSoundLimit, cameraDistance);
+        float explosionDistanceVolumen = Mathf.Lerp(1f, 0, normalizedValue);
+        // First, calculate the direction to the spawn
+        Vector3 spawnDirection = collision.position - player.position;
+
+        // Then, normalize it into a unit vector
+        Vector3 unitSpawnDirection = spawnDirection.normalized;
+
+        Debug.Log("Camera distance: " + cameraDistance + " explosion sound volumen : " + explosionDistanceVolumen);
+        // Now, we can play the sound in the direction, but not position, of the spawn
+        AudioSource.PlayClipAtPoint(clip, player.position + unitSpawnDirection, explosionDistanceVolumen);
+    }
 
 }

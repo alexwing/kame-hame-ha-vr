@@ -946,17 +946,43 @@ MonoBehaviour:
   currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
     type: 3}
   explosionLife: 6
-  terrainDestructHeight: 0.2
+  terrainDestructHeight: 8
+  terrainDestructWidth: 30
   ramdomExplosion: 0.022
-  brush: {fileID: 2800000, guid: c659d7326f84510419eefa921234e9d7, type: 3}
-  Listbrush:
-  - {fileID: 2800000, guid: c659d7326f84510419eefa921234e9d7, type: 3}
-  - {fileID: 2800000, guid: 6b96469662b40cb4d82bedd492be395d, type: 3}
-  - {fileID: 2800000, guid: e84414524c77af5499a36511b993b44e, type: 3}
-  - {fileID: 2800000, guid: 72f63b332d5c8cf49bbc987eef05a028, type: 3}
-  offsetx: -1
-  offsety: 1
   type: 0
+  analogIntensityCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0016746521
+      value: 1.8976555
+      inSlope: 0.093729846
+      outSlope: 0.093729846
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.06408202
+    - serializedVersion: 3
+      time: 0.91467726
+      value: -0.16995248
+      inSlope: 1.0044001
+      outSlope: 1.0044001
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.42916462
+    - serializedVersion: 3
+      time: 1.0000076
+      value: -0.0074231634
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
 --- !u!1 &913121350
 GameObject:

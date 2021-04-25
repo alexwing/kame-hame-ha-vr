@@ -210,7 +210,7 @@ public class Magic : MonoBehaviour
             float pitch = Mathf.Lerp(0.5f, 2.5f, normalizedValue);
 
             AudioSourceKame.pitch = pitch;
-            _currentEffect.GetComponent<KameHameHa>().Velocity = _kameHameHaShootlimit / speed;
+            _currentEffect.GetComponent<KameHameHa>().Velocity = normalizedValue;
             AudioSourceKame.Play();
             _currentEffect.GetComponent<KameHameHa>().Size = distance  * 100 / _kameHameMaxSize;
 
