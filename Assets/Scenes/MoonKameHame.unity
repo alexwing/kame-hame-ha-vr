@@ -984,6 +984,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
+  DistanceSoundLimit: 500
 --- !u!1 &913121350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,9 +2075,10 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
+  DistanceSoundLimit: 500
 --- !u!54 &1583132413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2974,9 +2976,10 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
+  DistanceSoundLimit: 500
 --- !u!54 &1904312295
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3331,9 +3334,10 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
+  DistanceSoundLimit: 500
 --- !u!54 &2091104048
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3588,7 +3592,8 @@ AudioSource:
   m_GameObject: {fileID: 1671192349943263}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 243078391499754788, guid: ec12f7772c03e4c4c9e4c2f1643595ad,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3860,9 +3865,10 @@ MonoBehaviour:
   explosionLife: 5
   _restoreTime: 5
   detailLevel: 1
-  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
   ramdomExplosion: 0.22
   FrameRate: 1
+  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
+  DistanceSoundLimit: 500
 --- !u!54 &698890703259502638
 Rigidbody:
   m_ObjectHideFlags: 0
