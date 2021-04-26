@@ -456,24 +456,14 @@ public class Utils
     /// <param name="YRange">YRange</param>
     /// <param name="ZRange">ZRange</param>
     /// <returns>Return the randomized position</returns>
-    public static Transform RandomNearPosition(Transform obj, float XRange, float YRange, float ZRange, bool OnlyTopY = false)
+    public static Transform RandomNearPosition(Transform obj, float XRange, float YRange, float ZRange)
     {
-        if (OnlyTopY)
-        {
+
             obj.position = new Vector3(
-                Random.Range(obj.position.x - (obj.position.x * XRange), obj.position.x + (obj.position.x * XRange)),
-                Random.Range(obj.position.y, obj.position.y + (obj.position.y * YRange * 5)),
-                Random.Range(obj.position.z - (obj.position.z * ZRange), obj.position.z + (obj.position.z * ZRange))
+                Random.Range(obj.position.x - XRange, obj.position.x + XRange),
+                Random.Range(obj.position.y - YRange, obj.position.y + YRange),
+                Random.Range(obj.position.z - ZRange, obj.position.z + ZRange)
                 );
-        }
-        else
-        {
-            obj.position = new Vector3(
-                Random.Range(obj.position.x - (obj.position.x * XRange), obj.position.x + (obj.position.x * XRange)),
-                Random.Range(obj.position.y - (obj.position.y * YRange), obj.position.y + (obj.position.y * YRange)),
-                Random.Range(obj.position.z - (obj.position.z * ZRange), obj.position.z + (obj.position.z * ZRange))
-                );
-        }
 
         return obj;
     }

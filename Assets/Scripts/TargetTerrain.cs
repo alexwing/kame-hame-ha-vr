@@ -186,13 +186,13 @@ public class TargetTerrain : MonoBehaviour
             _currentEffect.transform.GetChild(i).transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize) *0.1f;
         }
 
-        Destroy(_currentEffect, 0.25f);
+        Destroy(_currentEffect, 0.5f);
         //float ExplosionVelocity = collision.GetComponent<KameHameHa>().Velocity;
         // Debug.Log("Size" + collision.GetComponent<KameHameHa>().Size + " -- " + explosionSize + " -- " + ExplosionVelocity);
 
         for (int i = 0; i < explosionSize; i++)
         {
-            Destroy(Instantiate(currentDetonatorTerrain, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion, true).position, Quaternion.identity), explosionLife);
+            Destroy(Instantiate(currentDetonatorTerrain, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion).position, Quaternion.identity), explosionLife);
         }
 
 

@@ -90,7 +90,7 @@ public class Target : MonoBehaviour
 
         for (int i = 0; i < explosionSize; i++)
         {
-            Destroy(Instantiate(currentDetonator, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion,true).position, Quaternion.identity), explosionLife);
+            Destroy(Instantiate(currentDetonator, Utils.RandomNearPosition(collision.transform, ramdomExplosion, 0f, ramdomExplosion).position, Quaternion.identity), explosionLife);
         }
         Utils.PlaySound(clip, collision.transform, Camera.main.transform, DistanceSoundLimit);
 

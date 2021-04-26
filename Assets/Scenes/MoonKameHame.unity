@@ -2425,11 +2425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4320813330692338, guid: 0089c591bcb78a54aa4d6c0bfce215bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.8659906
+      value: 6.7459908
       objectReference: {fileID: 0}
     - target: {fileID: 4320813330692338, guid: 0089c591bcb78a54aa4d6c0bfce215bf, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.951047
+      value: 6.9020467
       objectReference: {fileID: 0}
     - target: {fileID: 4458532166224918, guid: 0089c591bcb78a54aa4d6c0bfce215bf, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2639,11 +2639,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618643760509412, guid: aa98456c40e76f0468dff1345b5c2b7d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.8641343
+      value: 5.7441344
       objectReference: {fileID: 0}
     - target: {fileID: 4618643760509412, guid: aa98456c40e76f0468dff1345b5c2b7d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.6108854
+      value: 2.5618854
       objectReference: {fileID: 0}
     - target: {fileID: 4947595311384836, guid: aa98456c40e76f0468dff1345b5c2b7d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -3809,7 +3809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c592f16851a620743868a31232613370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leapProvider: {fileID: 0}
+  _leapProvider: {fileID: 4968531031404854882}
   ModelPool:
   - GroupName: Capsule Hands
     _handModelManager: {fileID: 0}
@@ -4633,9 +4633,9 @@ MonoBehaviour:
   _physicsExtrapolation: 1
   _physicsExtrapolationTime: 0.011111111
   _workerThreadProfiling: 0
-  _deviceOffsetMode: 0
-  _deviceOffsetYAxis: 0
-  _deviceOffsetZAxis: 0.12
+  _deviceOffsetMode: 1
+  _deviceOffsetYAxis: -0.12
+  _deviceOffsetZAxis: 0.071
   _deviceTiltXAxis: 5
   _deviceOrigin: {fileID: 0}
   _temporalWarpingMode: 0
