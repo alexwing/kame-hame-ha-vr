@@ -3,21 +3,20 @@
 Test for Magic Leap and VR, allows to launch Kame Hame Ha with the hands and evaluate the hits received by the enemies
 
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/vBGyGWqPEm4/0.jpg)](https://www.youtube.com/watch?v=vBGyGWqPEm4)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pn8arLRP7P0/0.jpg)](https://www.youtube.com/watch?v=pn8arLRP7P0)
 
 Idea and some codes from https://github.com/ccm1441/Leap-Motion-ShotMagic
 
 ## Updates
 
-- Moon terrain explosion from AnimationCurve
-- Destroy terrain size depends of kame hame ha size and velocity
-- Add sound explosion fixed
-- Improved the Kame Hame Ha script, now it is correctly anchored to the player and works from wherever it is.
-- Explosions and terrain destruction.
-- Now you can fly with your right hand's index finger gesture.
-- Now you can rotate with your left hand's index finger gesture.
-- Kame hame ha proportional velocity from hands impulse.
-- Add physics to targets, when destroy timeout return to origin position
+- The Kame Hame Ha has a speed proportional to the impulse of the hands.
+- The explosion of the lunar terrain was previously done with a bitmap brush, now I use a revolutionized beizer curve, so it has gained precision and customization capacity.
+- The size of the terrain of destruction and explosions depends on the size and speed of the kame hame ha.
+- The sounds are determined by speed, size and distance of the effects.
+- Now when flying with the index finger gesture of your right hand, depending on the position of your hand you can go forwards and backwards proportionally.
+- You can now rotate with the index finger gesture of your left hand.
+- Add physics to the targets, when a time is exceeded after an impact, the target returns to the original position.
+
 
 ## Plugins used
 
