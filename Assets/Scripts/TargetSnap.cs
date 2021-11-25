@@ -5,15 +5,23 @@ using UnityEngine;
 
 public class TargetSnap : MonoBehaviour
 {
-    public Transform snapTo;
+    private Vector3 snapToPos;
+    private Quaternion snapToRot;
     private Rigidbody body;
     public float snapTime = 2;
 
     private float dropTimer;
     public bool interactable = true;
 
+    private void awake()
+    {
+
+    }
+
     private void Start()
     {
+        snapToPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        snapToRot = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z, transform.rotation.w);
         body = GetComponent<Rigidbody>();
     }
 
@@ -36,8 +44,8 @@ public class TargetSnap : MonoBehaviour
                 body.velocity = new Vector3(0f, 0f, 0f);
                 body.angularVelocity = new Vector3(0f, 0f, 0f);
                 //transform.parent = snapTo;
-                transform.position = snapTo.position;
-                transform.rotation = snapTo.rotation;
+                transform.position = snapToPos;
+                transform.rotation = snapToRot;
 
                 interactable = true;
             }
@@ -49,8 +57,8 @@ public class TargetSnap : MonoBehaviour
                 if (body.useGravity)
                     body.AddForce(-Physics.gravity);
 
-                transform.position = Vector3.Lerp(transform.position, snapTo.position, Time.fixedDeltaTime * t * 3);
-                transform.rotation = Quaternion.Slerp(transform.rotation, snapTo.rotation, Time.fixedDeltaTime * t * 2);
+                transform.position = Vector3.Lerp(transform.position, snapToPos, Time.fixedDeltaTime * t * 3);
+                transform.rotation = Quaternion.Slerp(transform.rotation, snapToRot, Time.fixedDeltaTime * t * 2);
 
             }
         }

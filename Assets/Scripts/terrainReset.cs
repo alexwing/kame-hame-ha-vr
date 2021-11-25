@@ -4,23 +4,31 @@
 
 using UnityEngine;
 
-public class TerrainReset : MonoBehaviour {
-	
-	public Terrain Terrain;
-    public TerrainData terrainData;
+public class TerrainReset : MonoBehaviour
+{
 
-    private float[,] originalHeights;
-	
+	private Terrain terrainToRestore;
+	public TerrainData TerrainDataBackup;
+
+	private float[,] originalHeights;
+
+	private void Awake()
+	{
+		terrainToRestore = GetComponent<Terrain>();
+		restoreTerrain();
+	}
+
 	private void OnDestroy()
 	{
-		this.Terrain.terrainData.SetHeights(0, 0, this.originalHeights);
+		restoreTerrain();
 	}
-	
-	private void Start()
-	{
-		this.originalHeights = terrainData.GetHeights(
-			0, 0, Terrain.terrainData.heightmapResolution, Terrain.terrainData.heightmapResolution);
 
-        this.Terrain.terrainData.SetHeights(0, 0, this.originalHeights);
-    }
+
+	private void restoreTerrain()
+	{
+		this.originalHeights = TerrainDataBackup.GetHeights(
+			0, 0, terrainToRestore.terrainData.heightmapResolution, terrainToRestore.terrainData.heightmapResolution);
+
+		this.terrainToRestore.terrainData.SetHeights(0, 0, this.originalHeights);
+	}
 }
