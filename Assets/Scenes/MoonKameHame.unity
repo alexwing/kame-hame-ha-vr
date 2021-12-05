@@ -3941,80 +3941,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &838828265 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1908289622503518, guid: 6904f37e0f927a64e88a66be020e8796,
-    type: 3}
-  m_PrefabInstance: {fileID: 1231644755}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &838828267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838828265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de40523c9b57c6d4d865d57c9ef0e214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TerrainDataBackup: {fileID: 15600000, guid: c9c05f1e1ea336e49ba146a104e2d88c, type: 2}
---- !u!114 &838828269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838828265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d44ae1fef2627446bdeda9d05f75085, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tData: {fileID: 15600000, guid: 5a2585971f88ee14ea0dc432488a27d9, type: 2}
-  currentDetonatorTerrain: {fileID: 100004, guid: 2e30c8faef924a24092d82bc1255e5ff,
-    type: 3}
-  explosionLife: 18
-  terrainDestructHeight: 8
-  terrainDestructWidth: 30
-  ramdomExplosion: 0.022
-  type: 0
-  analogIntensityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0.0016746521
-      value: 1.8976555
-      inSlope: 0.093729846
-      outSlope: 0.093729846
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.06408202
-    - serializedVersion: 3
-      time: 0.91467726
-      value: -0.16995248
-      inSlope: 1.0044001
-      outSlope: 1.0044001
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.42916462
-    - serializedVersion: 3
-      time: 1.0000076
-      value: -0.0074231634
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  clip: {fileID: 8300000, guid: 8f03951fee9bec9478d1ec979ba44677, type: 3}
-  DistanceSoundLimit: 500
 --- !u!1 &866807046 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4562339989772720818, guid: 0610de476a60b9845b8f95e331b990b0,
@@ -6117,10 +6043,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
-    - target: {fileID: 1908289622503518, guid: 6904f37e0f927a64e88a66be020e8796, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 4824509251536950, guid: 6904f37e0f927a64e88a66be020e8796, type: 3}
       propertyPath: m_LocalPosition.x
       value: -750
@@ -6165,23 +6087,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 218851552330760692, guid: 6904f37e0f927a64e88a66be020e8796,
-        type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 218851552330760692, guid: 6904f37e0f927a64e88a66be020e8796,
-        type: 3}
-      propertyPath: m_DrawHeightmap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 218851552330760692, guid: 6904f37e0f927a64e88a66be020e8796,
-        type: 3}
-      propertyPath: m_DrawInstanced
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114216396480093674, guid: 6904f37e0f927a64e88a66be020e8796, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6904f37e0f927a64e88a66be020e8796, type: 3}
 --- !u!1 &1273631037 stripped
 GameObject:
